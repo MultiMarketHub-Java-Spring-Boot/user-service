@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.Optional;
 
 @Service
-public  class AdminServiceImpl implements UserService {
+public class AdminServiceImpl implements AdminService {
 
     private  AdminRepository adminRepository;
     private  PasswordService passwordService;

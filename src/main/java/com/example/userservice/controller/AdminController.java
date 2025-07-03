@@ -1,7 +1,7 @@
 package com.example.userservice.controller;
 
 import com.example.userservice.beans.Admin;
-import com.example.userservice.service.UserService;
+import com.example.userservice.service.AdminService;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +12,9 @@ import java.util.List;
 @RestController
 public class AdminController {
 
-    UserService userService;
+    AdminService userService;
 
-    public AdminController(UserService userService){
+    public AdminController(AdminService userService){
         this.userService = userService;
     }
 
@@ -29,7 +29,7 @@ public class AdminController {
     public ResponseEntity<List<Admin>> getUsers(){
         System.out.println("No id");
         List<Admin> getUsersController = userService.getAllUsers(null);
-    return ResponseEntity.ok(getUsersController);
+        return ResponseEntity.ok(getUsersController);
     }
 
     @GetMapping("/admins/id")
