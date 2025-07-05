@@ -5,6 +5,7 @@ import com.example.userservice.service.PasswordService;
 import com.example.userservice.beans.Admin;
 import com.example.userservice.entity.AdminsEntity;
 import com.example.userservice.repository.AdminRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,8 +13,9 @@ import java.util.List;
 import java.sql.Timestamp;
 import java.util.Optional;
 
+@Slf4j
 @Service
-public  class AdminServiceImpl implements UserService {
+public class AdminServiceImpl implements AdminService {
 
     private  AdminRepository adminRepository;
     private  PasswordService passwordService;
@@ -33,6 +35,7 @@ public  class AdminServiceImpl implements UserService {
          adminsEntity.setEmailVerified(false);
          adminsEntity.setPassword(passwordService.getHashedPassword(((Admin)admin).getPassword()));
          return convertAdminEntityToAdmin(adminRepository.save(adminsEntity));
+
      }
      else{
          throw new IllegalArgumentException("This Email address "+ ((Admin)admin)+ " is already associated with Admin");
@@ -43,10 +46,12 @@ public  class AdminServiceImpl implements UserService {
     public List<Admin> getAllUsers(Integer id){
         List<AdminsEntity> adminsEntity = new ArrayList<>();
         if(id == null){
+
          adminsEntity = adminRepository.findAll();
          if(adminsEntity.isEmpty()){
              throw new NotFoundException("No Admins Found");
          }
+
      }
      else{
          Optional<AdminsEntity> adminsEntityById = adminRepository.findById(id);
@@ -57,6 +62,7 @@ public  class AdminServiceImpl implements UserService {
              adminsEntity.add(adminsEntityById.get());
          }
      }
+     log.info("Admins Found");
         return convertAdminEntityListToAdmin(adminsEntity);
     }
 
