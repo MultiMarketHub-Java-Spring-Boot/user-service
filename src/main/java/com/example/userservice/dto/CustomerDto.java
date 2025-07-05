@@ -9,7 +9,7 @@ public class CustomerDto {
     private String firstName;
     private String lastName;
     private String email;
-    private Long phoneNumber;
+    private Long contact;
     private AddressDto address;
     private Integer storeId;
     private String password;
@@ -70,7 +70,7 @@ public class CustomerDto {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                ", contact='" + contact + '\'' +
                 ", address='" + address + '\'' +
                 ", storeId=" + storeId +
                 '}';
@@ -93,11 +93,11 @@ public class CustomerDto {
     }
 
     public Long getPhoneNumber() {
-        return phoneNumber;
+        return contact;
     }
 
-    public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(Long contact) {
+        this.contact = contact;
     }
 
 
@@ -126,11 +126,11 @@ public class CustomerDto {
         this.address = address;
     }
 
-    public CustomerDto(String firstName, String lastName, String email, Long phoneNumber, AddressDto address, Integer storeId) {
+    public CustomerDto(String firstName, String lastName, String email, Long contact, AddressDto address, Integer storeId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.contact = contact;
         this.address = address;
         this.storeId = storeId;
     }

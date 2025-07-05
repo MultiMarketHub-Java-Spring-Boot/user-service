@@ -2,12 +2,11 @@ package com.example.userservice.controller;
 
 import com.example.userservice.dto.Customer;
 import com.example.userservice.dto.CustomerDto;
+import com.example.userservice.dto.CustomerResponse;
 import com.example.userservice.dto.ResponseDto;
 import com.example.userservice.service.CustomerService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +24,12 @@ public class CustomerController {
         ResponseDto<Customer> savedCustomers = customerService.createCustomer(customer);
         return ResponseEntity.ok(savedCustomers);
     }
+
+    @GetMapping("/api/v1/getUser")
+    public ResponseEntity<ResponseDto<CustomerResponse>> getCustomerByEmail(@RequestParam String email){
+        customerService.getCustomerInfo(email);
+        return ResponseEntity.ofNullable(null);
+    }
+
 
 }
