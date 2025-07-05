@@ -11,6 +11,8 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity,Long>{
 
     boolean existsByEmail(String email);
 
-    @Query("SELECT new com.example.userservice.dto.CustomerResponse(c.firstName,c.lastName,c.email,c.contact,c.storeId,c.address) FROM CustomerEntity c where c.email=:email")
-    CustomerResponse fetchCustomerByMail(String email);
+//    @Query("SELECT new com.example.userservice.dto.CustomerResponse(c.firstName,c.lastName,c.email,c.contact,c.address) FROM CustomerEntity c where c.email=:email")
+//    CustomerResponse fetchCustomerByMail(String email);
+        CustomerEntity findByEmail(String email);
+
 }

@@ -27,8 +27,8 @@ public class CustomerController {
 
     @GetMapping("/api/v1/getUser")
     public ResponseEntity<ResponseDto<CustomerResponse>> getCustomerByEmail(@RequestParam String email){
-        customerService.getCustomerInfo(email);
-        return ResponseEntity.ofNullable(null);
+        ResponseDto<CustomerResponse> response=  customerService.getCustomerInfo(email);
+        return ResponseEntity.ok(response);
     }
 
 

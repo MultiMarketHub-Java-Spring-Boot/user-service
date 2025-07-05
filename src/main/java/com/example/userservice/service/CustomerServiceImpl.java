@@ -8,14 +8,10 @@ import com.example.userservice.entity.AddressEntity;
 import com.example.userservice.entity.CustomerEntity;
 import com.example.userservice.repository.AddressRepository;
 import com.example.userservice.repository.CustomerRepository;
-import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -90,13 +86,23 @@ public class CustomerServiceImpl implements CustomerService {
             result.setData(null);
             return result;
         }else{
-            CustomerResponse customer = customerRepository.fetchCustomerByMail(email);
-            System.out.println(customer);
+            CustomerEntity entity = customerRepository.findByEmail(email);
+            CustomerDto.AddressDto address =new CustomerDto.AddressDto();
+            System.out.println(address.getCity());
+            address.setApartment(entity.getAddress().getApartment());
+            address.setState(entity.getAddress().getState());
+            address.setCity(entity.getAddress().getCity());
+            address.setStreet(entity.getAddress().getStreet());
+            CustomerResponse response = new CustomerResponse(
+                    entity.getFirstName(),
+                    entity.getLastName(),
+                    entity.getEmail(),
+                    entity.getContact(), address);
             result.setSuccess(true);
             result.setMessage("Customer Fetched Successfully");
             result.setStatusCode(200);
             result.setTimestamp(LocalDateTime.now());
-            result.setData(null);
+            result.setData(response);
             return result;
         }
     }

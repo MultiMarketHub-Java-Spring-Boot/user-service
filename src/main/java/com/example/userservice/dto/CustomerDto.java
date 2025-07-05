@@ -11,7 +11,7 @@ public class CustomerDto {
     private String email;
     private Long contact;
     private AddressDto address;
-    private Integer storeId;
+//    private Integer storeId;
     private String password;
 
     public String getPassword() {
@@ -72,7 +72,6 @@ public class CustomerDto {
                 ", email='" + email + '\'' +
                 ", contact='" + contact + '\'' +
                 ", address='" + address + '\'' +
-                ", storeId=" + storeId +
                 '}';
     }
 
@@ -102,13 +101,13 @@ public class CustomerDto {
 
 
 
-    public Integer getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(Integer storeId) {
-        this.storeId = storeId;
-    }
+//    public Integer getStoreId() {
+//        return storeId;
+//    }
+//
+//    public void setStoreId(Integer storeId) {
+//        this.storeId = storeId;
+//    }
 
     public String getFirstName() {
         return firstName;
@@ -126,13 +125,13 @@ public class CustomerDto {
         this.address = address;
     }
 
-    public CustomerDto(String firstName, String lastName, String email, Long contact, AddressDto address, Integer storeId) {
+    public CustomerDto(String firstName, String lastName, String email, Long contact, AddressDto address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.contact = contact;
         this.address = address;
-        this.storeId = storeId;
+//        this.storeId = storeId;
     }
 
     public CustomerDto() {
