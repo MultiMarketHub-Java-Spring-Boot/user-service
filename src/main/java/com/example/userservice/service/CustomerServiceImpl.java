@@ -2,15 +2,20 @@ package com.example.userservice.service;
 
 import com.example.userservice.dto.Customer;
 import com.example.userservice.dto.CustomerDto;
+import com.example.userservice.dto.CustomerResponse;
 import com.example.userservice.dto.ResponseDto;
 import com.example.userservice.entity.AddressEntity;
 import com.example.userservice.entity.CustomerEntity;
 import com.example.userservice.repository.AddressRepository;
 import com.example.userservice.repository.CustomerRepository;
+import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -72,7 +77,29 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomerInfo(Long id) {
-        return null;
+    public ResponseDto<CustomerResponse> getCustomerInfo(String email) {
+        boolean checkMailExists = customerRepository.existsByEmail(email);
+
+        ResponseDto<CustomerResponse> result = new ResponseDto<>();
+
+        if(!checkMailExists) {
+            result.setSuccess(false);
+            result.setMessage("Invalid mail");
+            result.setStatusCode(401);
+            result.setTimestamp(LocalDateTime.now());
+            result.setData(null);
+            return result;
+        }else{
+            CustomerResponse customer = customerRepository.fetchCustomerByMail(email);
+            System.out.println(customer);
+            result.setSuccess(true);
+            result.setMessage("Customer Fetched Successfully");
+            result.setStatusCode(200);
+            result.setTimestamp(LocalDateTime.now());
+            result.setData(null);
+            return result;
+        }
     }
+
+
 }
