@@ -14,6 +14,17 @@ public class AdminsEntity {
 	@Column(name="admin_id")
 	private Integer id;
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@Column(name = "role")
+	private String role;
+
 	public Integer getId() {
 		return id;
 	}
