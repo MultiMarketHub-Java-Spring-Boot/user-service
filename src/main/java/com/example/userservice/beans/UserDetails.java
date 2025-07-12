@@ -29,7 +29,6 @@ public class UserDetails {
 
     private String address;
 
-    @NotBlank
     private String phoneNumber;
     private Integer storeId;
     private boolean isEmailVerified;
@@ -137,6 +136,5 @@ public class UserDetails {
     public void setStoreId(Integer storeId) {
         this.storeId = storeId;
     }
-
 
 }
