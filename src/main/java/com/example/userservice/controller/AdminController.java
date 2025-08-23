@@ -40,6 +40,7 @@ public class AdminController {
     public ResponseEntity<List<Admin>> getUsers(){
         System.out.println("No id");
         List<Admin> getUsersController = userService.getAllUsers(null);
+        log.info("In admins: "+getUsersController);
         return ResponseEntity.ok(getUsersController);
     }
 
